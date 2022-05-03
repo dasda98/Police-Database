@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/table.css">
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+<p>Simple operation for crime's.</p>
+
+{%- for message in get_flashed_messages() %}
+{{ message }}
+{%- endfor %}
+
+<h3>
+    <a href="{{ url_for('add_mandate') }}">
+        Add mandate
+    </a>
+</h3>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Police Member</th>
+            <th>Criminal Member</th>
+            <th>Type of crime</th>
+            <th>Cost</th>
+            <th>Data</th>
+        </tr>
+        {% for i in mandates %}
+        <tr>
+            <td>{{ i.policjant.imie }} {{ i.policjant.nazwisko }}</td>
+            <td>{{ i.przestepca.imie }} {{ i.przestepca.nazwisko }}</td>
+            <td>{{ i.rodzaj_przestepstwa.nazwa_popelnionego_czynu }}</td>
+            <td>{{ i.rodzaj_przestepstwa.oplata }}</td>
+            <td>{{ i.data_przestepstwa }}</td>
+            <td>
+                <form method="POST" action="./delete_mandate" style="display: inline">
+                    <input type="hidden" value="{{ i.id_przestepstwa }}" name="id_przestepstwa">
+                    <input type="submit" value="Delete">
+                </form>
+                <form action="{{ url_for('modify_police') }}" method="POST" style="display: inline">
+                    <input type="hidden" value="{{ i.id_policja }}" name="id_policja">
+                    <input type="submit" value="Update">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

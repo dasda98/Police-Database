@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/fromularze.css">
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{%- endfor %}
+
+    <form action="{{ request.path }}" method="POST">
+
+        <label for="police_car">Choose a Police Car</label>
+        <select name="police_car" class="selectpicker form-control">
+            {% for i in Police_Car %}
+            <option value="{{ i.id_radiowoz }}">{{ i.numer }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="place">
+            Place
+            <input type="text" name="place" placeholder="place" />
+        </label><br>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+
+{% endblock %}

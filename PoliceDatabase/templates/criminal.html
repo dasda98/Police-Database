@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/table.css">
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+<p>Simple operation for criminal's.</p>
+
+<h3>
+    <a href="{{ url_for('add_criminal') }}">
+        Add Criminal
+    </a>
+    <a href="{{ url_for('mandate') }}">
+        Mandate
+    </a>
+</h3>
+
+{%- for message in get_flashed_messages() %}
+{{ message }}
+{%- endfor %}
+
+<table>
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone number</th>
+            <th>City</th>
+            <th>Adress</th>
+            <th>Operation</th>
+        </tr>
+        {% for i in Criminal_Member %}
+        <tr>
+            <td>{{ i.imie }}</td>
+            <td>{{ i.nazwisko }}</td>
+            <td>{{ i.nr_telefonu }}</td>
+            <td>{{ i.miasto }}</td>
+            <td>{{ i.adres }}</td>
+            <td>
+                <form method="POST" action="./delete_criminal" style="display: inline">
+                    <input type="hidden" value="{{i.id_przestepcy}}" name="id_przestepcy">
+                    <input type="submit" value="Delete">
+                </form>
+                <form action="./modify_criminal" method="post" style="display: inline">
+                    <input type="hidden" value="{{i.id_przestepcy}}" name="id_przestepcy">
+                    <input type="submit" value="Update">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

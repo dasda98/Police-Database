@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/fromularze.css">
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{%- endfor %}
+
+    <form action="{{ request.path }}" method="post">
+
+        <label for="police_member">Choose a police member</label>
+        <select name="police_member" class="selectpicker form-control">
+            {% for i in Police_Member %}
+            <option value="{{ i.id_policja }}">{{ i.imie }} {{ i.nazwisko }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="criminal_member">Choose criminal member</label>
+        <select name="criminal_member" class="selectpicker form-control">
+            {% for i in Criminal_Member %}
+            <option value="{{ i.id_przestepcy }}">{{ i.imie }} {{ i.nazwisko }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="type_crime">Choose a type of crime</label>
+        <select name="type_crime" class="selectpicker form-control">
+            {% for i in Type_of_criminal %}
+            <option value="{{ i.id_rodzja_przestepstwa }}">{{ i.nazwa_popelnionego_czynu }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="data">
+            Data
+            <input type="text" name="data" placeholder="data" />
+        </label><br>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+
+{% endblock %}

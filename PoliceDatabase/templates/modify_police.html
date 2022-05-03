@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/fromularze.css">
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+<div class="alert alert-danger">
+    {{ message }}
+</div>
+{%- endfor %}
+
+<form action="{{ url_for('modify_police') }}" method="get">
+    {% for i in Police_Member %}
+    <label for="name">
+        Name
+        <input type="text" name="name" placeholder="{{ i.imie }}" />
+    </label><br>
+
+    <label for="surname">
+        Surname
+        <input type="text" name="surname" placeholder="{{ i.nazwisko }}" />
+    </label><br>
+
+    <label for="phone">
+        Phone number
+        <input type="text" name="phone" placeholder="{{ i.nr_telefonu }}" />
+    </label><br>
+
+    <label for="miasto">
+        City
+        <input type="text" name="city" placeholder="{{ i.miasto }}" />
+    </label><br>
+
+    <label for="adres">
+        Adress
+        <input type="text" name="adress" placeholder="{{ i.adres }}" />
+    </label><br>
+
+    {% endfor %}
+
+    <label for="car_num">Choose police car</label>
+    <select name="car_num" class="selectpicker form-control">
+        {% for i in Police_Car %}
+        <option value="{{ i.id_radiowoz }}">{{ i.numer }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="pol_station">Choose police station</label>
+    <select name="pol_station" class="selectpicker form-control">
+        {% for i in Police_Station %}
+        <option value="{{ i.id_komisariat }}">{{ i.nazwa }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="rank">Choose rank</label>
+    <select name="rank" class="selectpicker form-control">
+        {% for i in Rank %}
+        <option value="{{ i.id_ranga }}">{{ i.tytul }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="submit" value="Update">
+</form>
+
+
+{% endblock %}

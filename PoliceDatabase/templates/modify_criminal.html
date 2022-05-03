@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/fromularze.css">
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+<div class="alert alert-danger">
+    {{ message }}
+</div>
+{%- endfor %}
+
+<form action="./modify_criminal" method="GET">
+    {% for i in Criminal_Member %}
+    <label for="name">
+        Name
+        <input type="text" value="{{ i.imie }}" name="new_name" placeholder="name" />
+    </label><br>
+
+    <label for="surname">
+        Surname
+        <input type="text" value="{{ i.nazwisko }}" name="new_surname" placeholder="surname" />
+    </label><br>
+
+    <label for="phone">
+        Phone number
+        <input type="text" value="{{ i.nr_telefonu }}" name="new_phone" placeholder="phone" />
+    </label><br>
+
+    <label for="miasto">
+        City
+        <input type="text" value="{{ i.miasto }}" name="new_city" placeholder="city" />
+    </label><br>
+
+    <label for="adres">
+        Adress
+        <textarea name="new_adress" value="{{ i.adres }}" placeholder="adress"></textarea>
+    </label><br>
+    {% endfor %}
+    <input type="submit" value="Update" />
+</form>
+
+
+{% endblock %}

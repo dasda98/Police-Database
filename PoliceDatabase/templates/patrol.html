@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/table.css">
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+<p>Simple operation for patrol's.</p>
+
+{%- for message in get_flashed_messages() %}
+{{ message }}
+{%- endfor %}
+
+<h3>
+    <a href="{{ url_for('add_patrol') }}">
+        Add Patrol
+    </a>
+</h3>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Police Car Number</th>
+            <th>Place</th>
+            <th>Operation</th>
+        </tr>
+        {% for i in Patrol %}
+        <tr>
+            <td>{{ i.radiowoz.numer }}</td>
+            <td>{{ i.miejsce }}</td>
+            <td>
+                <form method="POST" action="./delete_patrol" style="display: inline">
+                    <input type="hidden" value="{{ i.id_patrol }}" name="id_patrol">
+                    <input type="submit" value="Delete">
+                </form>
+                <form action="{{ url_for('modify_police') }}" method="POST" style="display: inline">
+                    <input type="hidden" value="{{ i.id_policja }}" name="id_policja">
+                    <input type="submit" value="Update">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

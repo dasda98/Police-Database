@@ -1,0 +1,50 @@
+.select-container {
+    overflow: hidden;
+    height: 30px;
+    background: #000 url(select-arrow.png) 95% center no-repat;
+    display: block;
+}
+
+.select-container select {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 140%;
+    border: 0;
+    background: transparent;
+    font: 14px/30px 'Open Sans', sans-serif;
+    color: #fff;
+    padding: 0 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+select,
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 5px;
+    vertical-align: top;
+    border: 1px solid #54A5DA;
+    height: 27px;
+    background: #fff;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    color: #666;
+    display: block;
+    width: 100%;
+}
+
+select {
+    padding: 3px 3px 3px 5px;
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+    line-height: 1.4em;
+    resize: vertical;
+}

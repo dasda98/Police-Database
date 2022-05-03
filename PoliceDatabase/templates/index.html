@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Police Database</h1>
+    <p class="lead">In this application, you can add/delete/modify policemans, police structure and crimnals.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Police's</h2>
+        <p>Information about police members and police structure</p>
+        <p><a class="btn btn-default" href="{{ url_for('police') }}">Go &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Crminal's</h2>
+        <p>Information about criminal's</p>
+        <p><a class="btn btn-default" href="{{ url_for('criminal') }}">Go &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Contact</h2>
+        <p>Contact to application administrator</p>
+        <p><a class="btn btn-default" href="{{ url_for('contact') }}">Go &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

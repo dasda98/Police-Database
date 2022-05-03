@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/content/fromularze.css">
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{%- endfor %}
+
+    <form action="{{ request.path }}" method="post">
+        <label for="name">
+            Name
+            <input type="text" name="name" placeholder="name" />
+        </label><br>
+
+        <label for="surname">
+            Surname
+            <input type="text" name="surname" placeholder="surname" />
+        </label><br>
+
+        <label for="phone">
+            Phone number
+            <input type="text" name="phone" placeholder="phone" />
+        </label><br>
+
+        <label for="miasto">
+            City
+            <input type="text" name="city" placeholder="city" />
+        </label><br>
+
+        <label for="adres">
+            Adress
+            <textarea name="adress" placeholder="adress"></textarea>
+        </label><br>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+
+{% endblock %}
